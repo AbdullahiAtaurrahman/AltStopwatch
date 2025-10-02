@@ -20,7 +20,10 @@ function updateDisplay() {
   const m = minutes.toString().padStart(2, "0");
   const s = seconds.toString().padStart(2, "0");
   const ms = milliSeconds.toString().padStart(2, "0");
-  display.innerHTML = `<div class="timer-display">${h}:${m}:${s}<span>${ms}</span></div>`;
+  const displayText = `<div class="timer-display">${h}:${m}:${s}<span id='milli-secs' >${ms}</span></div>`;
+  display.innerHTML = displayText;
+  let span = document.querySelector("#milli-secs");
+  span.style.color = "red";
 }
 
 const startTimer = () => {
@@ -45,7 +48,6 @@ const startTimer = () => {
 
     updateDisplay();
   }, 10);
-
   stopBtn.disabled = false;
   resetBtn.disabled = false;
   startBtn.disabled = true;
@@ -59,11 +61,11 @@ const resetTimer = () => {
   hours = 0;
   milliSeconds = 0;
   updateDisplay();
-
   stopBtn.disabled = false;
   resetBtn.disabled = false;
   startBtn.disabled = false;
 };
+
 const stopTimer = () => {
   clearInterval(interval);
   interval = null;
