@@ -1,12 +1,10 @@
 // get buttons and display field
-
 const display = document.querySelector(".timer-display");
 const stopBtn = document.querySelector(".stop");
 const resetBtn = document.querySelector(".reset");
 const startBtn = document.querySelector(".start");
 
 // create default timer values
-
 let milliSeconds = 0;
 let seconds = 0;
 let minutes = 0;
@@ -14,7 +12,6 @@ let hours = 0;
 let interval = null;
 
 // disable buttons by default
-
 stopBtn.disabled = true;
 resetBtn.disabled = true;
 
@@ -45,6 +42,7 @@ const startTimer = () => {
     if (hours >= 24) {
       display.textContent = `${"Please restart stopwatch"}`;
     }
+
     updateDisplay();
   }, 10);
 
@@ -59,6 +57,7 @@ const resetTimer = () => {
   seconds = 0;
   minutes = 0;
   hours = 0;
+  milliSeconds = 0;
   updateDisplay();
 
   stopBtn.disabled = false;
