@@ -7,7 +7,12 @@
 
 body {
   min-height: 100vh;
-  background-image: linear-gradient(rgb(168, 166, 166), rgb(214, 34, 208));
+  background: #cccbcc;
+  color: #000;
+  transition: background 0.3s;
+}
+.dark-mode {
+  background: #04012f;
 }
 
 .theme-toggle {
@@ -42,13 +47,13 @@ body {
 .stopwatch {
   background-color: rgb(64, 52, 52);
   width: 100%;
-  padding: 32px;
+  padding: 20px;
   text-align: center;
   font-size: 42px;
 }
 
 .stopwatch > div {
-  margin-top: 38px;
+  margin-top: 12px;
 }
 
 .btn {
@@ -67,6 +72,8 @@ button:hover {
 }
 .laps {
   font-size: 0.8em;
+  padding: 0;
+  margin: 0;
 }
 .lap-text {
   margin-bottom: 12px;
@@ -74,4 +81,8 @@ button:hover {
 
 ul {
   list-style: none;
+}
+
+#milli-secs {
+  color: red;
 }
