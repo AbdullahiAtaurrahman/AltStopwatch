@@ -3,6 +3,8 @@ const display = document.querySelector(".timer-display");
 const stopBtn = document.querySelector(".stop");
 const resetBtn = document.querySelector(".reset");
 const startBtn = document.querySelector(".start");
+const lapBtn = document.querySelector(".lap");
+const laps = document.querySelector(".laps");
 
 // create default timer values
 let milliSeconds = 0;
@@ -10,6 +12,9 @@ let seconds = 0;
 let minutes = 0;
 let hours = 0;
 let interval = null;
+
+// hide laps dive by default
+laps.style.display = "none";
 
 // disable buttons by default
 stopBtn.disabled = true;
@@ -73,6 +78,29 @@ const stopTimer = () => {
   startBtn.disabled = false;
 };
 
+const lapTimer = () => {
+  // show the laps container
+  laps.style.display = "block";
+
+  // create a lap element
+  const lapItem = document.createElement("li");
+  lapItem.style.listStyle = "none";
+  lapItem.style.fontFamily = "monospace";
+  lapItem.style.margin = "5px 0";
+
+  // format the current time
+  const h = hours.toString().padStart(2, "0");
+  const m = minutes.toString().padStart(2, "0");
+  const s = seconds.toString().padStart(2, "0");
+  const ms = milliSeconds.toString().padStart(2, "0");
+
+  lapItem.textContent = `${h}:${m}:${s}.${ms}`;
+
+  // append lap to laps container
+  laps.appendChild(lapItem);
+};
+
 stopBtn.addEventListener("click", stopTimer);
 startBtn.addEventListener("click", startTimer);
 resetBtn.addEventListener("click", resetTimer);
+lapBtn.addEventListener("click", lapTimer);
