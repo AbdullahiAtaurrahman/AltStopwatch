@@ -13,6 +13,8 @@ let minutes = 0;
 let hours = 0;
 let interval = null;
 
+let showStart = true;
+
 // hide laps dive by default
 laps.style.display = "none";
 
@@ -25,7 +27,9 @@ function updateDisplay() {
   const m = minutes.toString().padStart(2, "0");
   const s = seconds.toString().padStart(2, "0");
   const ms = milliSeconds.toString().padStart(2, "0");
+
   const displayText = `<div class="timer-display">${h}:${m}:${s}<span id='milli-secs' >${ms}</span></div>`;
+
   display.innerHTML = displayText;
   let span = document.querySelector("#milli-secs");
   span.style.color = "red";
@@ -69,6 +73,7 @@ const resetTimer = () => {
   stopBtn.disabled = false;
   resetBtn.disabled = false;
   startBtn.disabled = false;
+  laps.innerHTML = "";
 };
 
 const stopTimer = () => {
@@ -79,25 +84,16 @@ const stopTimer = () => {
 };
 
 const lapTimer = () => {
-  // show the laps container
   laps.style.display = "block";
-
-  // create a lap element
-  const lapItem = document.createElement("li");
-  lapItem.style.listStyle = "none";
-  lapItem.style.fontFamily = "monospace";
-  lapItem.style.margin = "5px 0";
-
-  // format the current time
-  const h = hours.toString().padStart(2, "0");
-  const m = minutes.toString().padStart(2, "0");
-  const s = seconds.toString().padStart(2, "0");
+  //   format time
   const ms = milliSeconds.toString().padStart(2, "0");
+  const s = seconds.toString().padStart(2, "0");
+  const m = minutes.toString().padStart(2, "0");
+  const h = hours.toString().padStart(2, "0");
+  startBtn.disabled = false;
 
-  lapItem.textContent = `${h}:${m}:${s}.${ms}`;
-
-  // append lap to laps container
-  laps.appendChild(lapItem);
+  //   add lap to display
+  laps.innerHTML += `<div class="timer-display">${h}:${m}:${s}<span id='milli-secs' >${ms}</span></div>`;
 };
 
 stopBtn.addEventListener("click", stopTimer);
